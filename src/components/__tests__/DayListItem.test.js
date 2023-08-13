@@ -1,8 +1,10 @@
 import React from "react";
 
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import DayListItem from "components/DayListItem";
+
+import DayList from "components/DayList";
 
 afterEach(cleanup);
 
@@ -24,3 +26,44 @@ it("renders '2 spots remaining' when there are 2 spots", () => {
   const { getByText } = render(<DayListItem name="Monday" spots={2} />);
   expect(getByText("2 spots remaining")).toBeInTheDocument();
 });
+
+describe('DayList', () => {
+  const mockDays = ['Monday', 'Tuesday', 'Wednesday'];
+  const mockSelectedDay = 'Tuesday';
+  const mockSetDay = jest.fn();
+
+  it('renders correctly', () => {
+    const { getByText } = render(
+      <DayList days={mockDays} selectedDay={mockSelectedDay} setDay={mockSetDay} />
+    );
+
+    expect(getByText('Monday')).toBeInTheDocument();
+    expect(getByText('Tuesday')).toBeInTheDocument();
+    expect(getByText('Wednesday')).toBeInTheDocument();
+  });
+
+  it('calls setDay with the selected day', () => {
+    const { getByText } = render(
+      <DayList days={mockDays} selectedDay={mockSelectedDay} setDay={mockSetDay} />
+    );
+
+    fireEvent.click(getByText('Monday'));
+    expect(mockSetDay).toHaveBeenCalledWith('Monday');
+
+    fireEvent.click(getByText('Wednesday'));
+    expect(mockSetDay).toHaveBeenCalledWith('Wednesday');
+  });
+
+  it('applies selected class to the selected day', () => {
+    const { getByText } = render(
+      <DayList days={mockDays} selectedDay={mockSelectedDay} setDay={mockSetDay} />
+    );
+
+    const selectedDayElement = getByText('Tuesday');
+    expect(selectedDayElement).toHaveClass('selected');
+
+    const nonSelectedDayElement = getByText('Monday');
+    expect(nonSelectedDayElement).not.toHaveClass('selected');
+  });
+});
+
