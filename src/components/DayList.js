@@ -1,5 +1,5 @@
-import React from "react";
-import DayListItem from "./DayListItem";
+import React from 'react';
+import DayListItem from './DayListItem';
 
 const DayList = ({ days, selectedDay, setDay }) => {
   return (
@@ -7,13 +7,13 @@ const DayList = ({ days, selectedDay, setDay }) => {
       <h2>Select a Day</h2>
       <ul>
         {days.map((day, index) => (
-          <li
+          <DayListItem
             key={index}
-            onClick={() => setDay(day)}
-            className={selectedDay === day ? 'selected' : ''}
-          >
-            {day}
-          </li>
+            name={day.name}
+            spots={day.spots}
+            selected={selectedDay === day.name}
+            setDay={setDay}
+          />
         ))}
       </ul>
     </div>
@@ -21,3 +21,4 @@ const DayList = ({ days, selectedDay, setDay }) => {
 };
 
 export default DayList;
+
