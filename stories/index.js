@@ -5,6 +5,7 @@ import "index.scss";
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+import InterviewerList from "components/InterviewerList";
 
 storiesOf("Button", module)
   .addParameters({
@@ -65,4 +66,25 @@ storiesOf("Button", module)
     .add("Wednesday", () => (
         <DayList days={days} day={"Wednesday"} setDay={action("setDay")} />
     ));
-  
+
+    storiesOf("InterviewerList", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Initial", () => (
+    <InterviewerList
+      interviewers={interviewers}
+    />
+  ))
+  .add("Selected", () => (
+    <InterviewerList
+      interviewers={interviewers}
+      value={2}
+    />
+  ))
+  .add("Clickable", () => (
+    <InterviewerList
+      interviewers={interviewers}
+      onChange={action("setInterviewer")}
+    />
+  ));
