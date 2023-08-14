@@ -1,11 +1,12 @@
 import React from 'react';
+import './styles.scss' 
 
-const Appointment = () => {
+export default function Appointment(props) {
   return (
     <article className="appointment">
-      {/* Your content here */}
+      {}
     </article>
   );
 };
 
-export default Appointment;
+
