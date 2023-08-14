@@ -6,6 +6,7 @@ import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerList from "components/InterviewerList";
+import InterviewerListItem from "components/InterviewerListItem";
 
 storiesOf("Button", module)
   .addParameters({
@@ -88,3 +89,36 @@ storiesOf("Button", module)
       onChange={action("setInterviewer")}
     />
   ));
+
+  const interviewer = {
+    id: 1,
+    name: "Sylvia Palmer",
+    avatar: "https://i.imgur.com/LpaY82x.png"
+  };
+  
+  storiesOf("InterviewerListItem", module)
+    .addParameters({
+      backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+    })
+    .add("Unselected", () => (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+      />
+    ))
+    .add("Selected", () => (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        selected
+      />
+    ))
+    .add("Clickable", () => (
+      <InterviewerListItem
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        setInterviewer={() => action("setInterviewer")(interviewer.id)}
+      />
+    ));
