@@ -21,4 +21,3 @@ const DayList = ({ days, selectedDay, setDay }) => {
 };
 
 export default DayList;
-
