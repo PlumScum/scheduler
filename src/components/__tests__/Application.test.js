@@ -1,7 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText } from "@testing-library/react";
-
+import { render, cleanup, waitForElement, wait, fireEvent, queryByAltText, getByText, getByAltText, getAllByTestId, prettyDOM, getByPlaceholderText, queryByText, queryAllByAltText } from "@testing-library/react";
 import Application from "components/Application";
 
 afterEach(cleanup);
