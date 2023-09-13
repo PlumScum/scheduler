@@ -2,6 +2,8 @@ import "components/Application.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:8001";
+
 
 export default function useApplicationData(props) {
 
